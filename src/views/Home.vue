@@ -1,10 +1,7 @@
 <template>
   <div>
-    <input
-      :type="[showPassword ? 'password' : 'text']"
-      placeholder="Password"
-    />
-    <span @click="showPassword = !showPassword" class="icon">
+    <input :type="toggle" placeholder="Password" />
+    <span @click="visibility" class="icon">
       <font-awesome-icon :icon="eyeIcon" size="lg" />
     </span>
   </div>
@@ -21,6 +18,14 @@ export default {
   computed: {
     eyeIcon() {
       return this.showPassword ? faEye : faEyeSlash;
+    },
+    toggle() {
+      return this.showPassword ? "password" : "text";
+    },
+  },
+  methods: {
+    visibility() {
+      return (this.showPassword = !this.showPassword);
     },
   },
 };
