@@ -1,18 +1,41 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <input
+      :type="[showPassword ? 'password' : 'text']"
+      placeholder="Password"
+    />
+    <span @click="showPassword = !showPassword" class="icon">
+      <font-awesome-icon :icon="eyeIcon" size="lg" />
+    </span>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      showPassword: false,
+    };
+  },
+  computed: {
+    eyeIcon() {
+      return this.showPassword ? faEye : faEyeSlash;
+    },
   },
 };
 </script>
+
+<style scoped>
+.icon {
+  background-color: rgb(233, 229, 229);
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 10px;
+}
+input {
+  display: inline;
+  padding: 8px;
+  width: 20%;
+}
+</style>
